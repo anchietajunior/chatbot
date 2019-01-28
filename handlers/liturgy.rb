@@ -11,7 +11,7 @@ module Lita
         help: { "daily_liturgy" => "respond with daily liturgy" }
       )
 
-      def daily_liturgy
+      def daily_liturgy response
         response.reply psalm
       end
 
