@@ -1,5 +1,6 @@
 require './handlers/ping.rb'
 require './handlers/tip.rb'
+require './handlers/liturgy.rb'
 
 Lita.configure do |config|
   # The name your robot will use.
