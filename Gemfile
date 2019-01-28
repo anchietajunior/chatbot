@@ -5,6 +5,8 @@ gem "lita-slack"
 
 gem "nokogiri"
 gem "json"
+gem "sanitize"
+
 # Uncomment to use the HipChat adapter
 # gem "lita-hipchat"
 

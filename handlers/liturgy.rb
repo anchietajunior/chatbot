@@ -1,6 +1,6 @@
 require 'open-uri'
 require 'nokogiri'
-require 'json'
+require 'sanitize'
 
 module Lita
   module Handlers
@@ -21,7 +21,7 @@ module Lita
         doc = Nokogiri::HTML(html)
         say_it = ""
         doc.css("#liturgia-2").children.each do |element|
-          say_it << "#{element.inner_html} \n "
+          say_it << Sanitize.fragment("#{element.inner_html} \n ")
         end
         say_it
       end
