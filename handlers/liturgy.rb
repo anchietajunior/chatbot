@@ -5,6 +5,10 @@ require 'sanitize'
 module Lita
   module Handlers
     class Liturgy < Handler
+      
+      DEFAULT_URL = 'https://liturgia.cancaonova.com/pb/'
+      DOC = Nokogiri::HTML(open(url)) 
+
       route(/salmo/, 
         :daily_liturgy,
         command: true,
@@ -16,14 +20,7 @@ module Lita
       end
 
       def psalm
-        url = 'https://liturgia.cancaonova.com/pb/'
-        html = open(url)
-        doc = Nokogiri::HTML(html)
-        say_it = ""
-        doc.css("#liturgia-2").children.each do |element|
-          say_it << Sanitize.fragment("#{element.inner_html} \n ")
-        end
-        say_it
+        say_it = doc.css("#liturgia-2").children.each { |element| say_it << Sanitize.fragment("#{element.inner_html} \n ") }
       end
 
       Lita.register_handler(self)
