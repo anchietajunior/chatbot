@@ -7,8 +7,6 @@ module Lita
     class Liturgy < Handler
       
       DEFAULT_URL = 'https://liturgia.cancaonova.com/pb/'
-      DOC = Nokogiri::HTML(open(DEFAULT_URL))
-      SAY_IT = ""
 
       route(/salmo/, 
         :daily_liturgy,
@@ -21,7 +19,12 @@ module Lita
       end
 
       def psalm
-        SAY_IT = DOC.css("#liturgia-2").children.each { |element| say_it << Sanitize.fragment("#{element.inner_html} \n ") }
+        say_it = ""
+        say_it = doc.css("#liturgia-2").children.each { |element| say_it << Sanitize.fragment("#{element.inner_html} \n ") }
+      end
+
+      def doc
+        Nokogiri::HTML(open(DEFAULT_URL))
       end
 
       Lita.register_handler(self)
