@@ -13,7 +13,9 @@ Lita.configure do |config|
   # Messages at the selected level and above will be logged.
   config.robot.log_level = :info
   config.robot.adapter = :slack
-	config.adapters.slack.token = "xoxb-536081868710-535243647250-JUcerWNnExCnEQPbUaCajrQX"
+  config.adapters.slack.token = "xoxb-536081868710-535243647250-JUcerWNnExCnEQPbUaCajrQX"
+  config.redis[:url] = ENV["REDISTOGO_URL"]
+  config.http.port = ENV["PORT"]
   # An array of user IDs that are considered administrators. These users
   # the ability to add and remove other users from authorization groups.
   # What is considered a user ID will change depending on which adapter you use.
